@@ -3,141 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earnova - Create Account</title>
+    <title>Earnova - Complete tasks & Earn rewards</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; box-sizing: border-box; }
-        h2 { text-align: center; color: #333; margin-bottom: 5px; }
-        p.subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 20px; }
-        label { font-weight: bold; font-size: 14px; color: #333; display: block; margin-top: 12px; }
-        input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
-        button { width: 100%; background: #6c5ce7; color: white; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 20px; transition: 0.3s; }
-        button:hover { background: #5b4bc4; }
-        .switch { text-align: center; margin-top: 15px; cursor: pointer; color: #007bff; font-size: 14px; }
-        .switch:hover { text-decoration: underline; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #f4f5f7;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* Top Header Bar */
+        .header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Main Container Box */
+        .main-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        .card h2 {
+            text-align: center;
+            color: #2d3436;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        .card p.sub-text {
+            text-align: center;
+            color: #636e72;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* Form Inputs */
+        .input-group {
+            margin-bottom: 18px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4b6584;
+            margin-bottom: 6px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #dfe6e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .input-group input:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+            outline: none;
+        }
+
+        /* Action Button */
+        .btn {
+            width: 100%;
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #5b4bc4;
+        }
+
+        /* Switch Link */
+        .switch-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #636e72;
+        }
+        .switch-text span {
+            color: #6c5ce7;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .switch-text span:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- साइन अप फॉर्म -->
-    <div id="signup-form">
-        <h2>Create Account</h2>
-        <p class="subtitle">Join Earnova and explore available tasks</p>
-        
-        <label>Full Name</label>
-        <input type="text" id="fullname" placeholder="Enter your full name">
-
-        <label>Username</label>
-        <input type="text" id="username" placeholder="Choose a username">
-
-        <label>Email Address</label>
-        <input type="email" id="signup-email" placeholder="Enter your email address">
-
-        <label>Password</label>
-        <input type="password" id="signup-password" placeholder="Create a password">
-
-        <button onclick="registerUser()">Create Account</button>
-        <div class="switch" onclick="toggleForm('login')">Already have an account? Login</div>
+    <!-- Header -->
+    <div class="header">
+        <h1>💰 Earnova</h1>
+        <p>Complete tasks • Earn rewards</p>
     </div>
 
-    <!-- लॉगिन फॉर्म -->
-    <div id="login-form" style="display: none;">
-        <h2>Welcome Back</h2>
-        <p class="subtitle">Login to your Earnova account</p>
+    <!-- Main Form Section -->
+    <div class="main-container">
+        <div class="card">
+            
+            <!-- Sign Up Form -->
+            <div id="signup-section">
+                <h2>Create Account</h2>
+                <p class="sub-text">Join Earnova and explore available tasks</p>
+                
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullname" placeholder="Enter your full name">
+                </div>
 
-        <label>Email Address</label>
-        <input type="email" id="login-email" placeholder="Enter your email">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Choose a username">
+                </div>
 
-        <label>Password</label>
-        <input type="password" id="login-password" placeholder="Enter your password">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email address">
+                </div>
 
-        <button onclick="loginUser()">Login</button>
-        <div class="switch" onclick="toggleForm('signup')">Don't have an account? Create Account</div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password">
+                </div>
+
+                <button class="btn" onclick="registerUser()">Create Account</button>
+                
+                <div class="switch-text">
+                    Already have an account? <span onclick="switchView('login')">Login</span>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-section" style="display: none;">
+                <h2>Welcome Back</h2>
+                <p class="sub-text">Login to your Earnova account</p>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="login-email" placeholder="Enter your email">
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password">
+                </div>
+
+                <button class="btn" onclick="loginUser()">Login</button>
+
+                <div class="switch-text">
+                    Don't have an account? <span onclick="switchView('signup')">Create Account</span>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
-<script>
-  // अपनी Firebase Config यहाँ डालें
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
+    <script>
+      // अपनी Firebase Config यहाँ डालें
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+      };
 
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
 
-  // फॉर्म बदलने के लिए (Sign Up और Login के बीच स्विच)
-  function toggleForm(type) {
-      if(type === 'login') {
-          document.getElementById('signup-form').style.display = 'none';
-          document.getElementById('login-form').style.display = 'block';
-      } else {
-          document.getElementById('signup-form').style.display = 'block';
-          document.getElementById('login-form').style.display = 'none';
-      }
-  }
-
-  // रजिस्टर करने का फंक्शन
-  function registerUser() {
-      const fullname = document.getElementById('fullname').value;
-      const username = document.getElementById('username').value;
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
-
-      if(!fullname || !username || !email || !password) {
-          alert("कृपया सभी फ़ील्ड भरें!");
-          return;
+      // व्यू स्विच करने के लिए (Signup से Login और उल्टा)
+      function switchView(view) {
+          if(view === 'login') {
+              document.getElementById('signup-section').style.display = 'none';
+              document.getElementById('login-section').style.display = 'block';
+          } else {
+              document.getElementById('signup-section').style.display = 'block';
+              document.getElementById('login-section').style.display = 'none';
+          }
       }
 
-      auth.createUserWithEmailAndPassword(email, password)
-          .then((userCredential) => {
-              // ईमेल वेरिफिकेशन लिंक भेजना
-              userCredential.user.sendEmailVerification()
-                  .then(() => {
-                      alert("रजिस्ट्रेशन सफल! आपके ईमेल पर एक वेरिफिकेशन लिंक भेजा गया है। कृपया अपना इनबॉक्स चेक करें और वेरीफाई करें।");
-                      toggleForm('login');
-                  });
-          })
-          .catch((error) => {
-              alert("त्रुटि: " + error.message);
-          });
-  }
+      // रजिस्टर करने का फंक्शन
+      function registerUser() {
+          const fullname = document.getElementById('fullname').value;
+          const username = document.getElementById('username').value;
+          const email = document.getElementById('signup-email').value;
+          const password = document.getElementById('signup-password').value;
 
-  // लॉगिन करने का फंक्शन
-  function loginUser() {
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+          if(!fullname || !username || !email || !password) {
+              alert("कृपया सभी फ़ील्ड भरें!");
+              return;
+          }
 
-      if(!email || !password) {
-          alert("कृपया ईमेल और पासवर्ड दर्ज करें!");
-          return;
+          auth.createUserWithEmailAndPassword(email, password)
+              .then((userCredential) => {
+                  userCredential.user.sendEmailVerification()
+                      .then(() => {
+                          alert("रजिस्ट्रेशन सफल! आपके ईमेल पर वेरिफिकेशन लिंक भेजा गया है। कृपया वेरीफाई करें।");
+                          switchView('login');
+                      });
+              })
+              .catch((error) => {
+                  alert("त्रुटि: " + error.message);
+              });
       }
 
-      auth.signInWithEmailAndPassword(email, password)
-          .then((userCredential) => {
-              if (userCredential.user.emailVerified) {
-                  alert("सफलतापूर्वक लॉगिन हो गए!");
-                  // यूज़र के लॉगिन होने के बाद उसे टास्क पेज या डैशबोर्ड पर भेज सकते हैं
-                  // window.location.href = "dashboard.html";
-              } else {
-                  alert("कृपया पहले अपने ईमेल पर आए लिंक से अपना अकाउंट वेरीफाई करें!");
-                  auth.signOut();
-              }
-          })
-          .catch((error) => {
-              alert("लॉगिन विफल: गलत ईमेल या पासवर्ड!");
-          });
-  }
-</script>
+      // लॉगिन करने का फंक्शन
+      function loginUser() {
+          const email = document.getElementById('login-email').value;
+          const password = document.getElementById('login-password').value;
 
+          if(!email || !password) {
+              alert("कृपया ईमेल और पासवर्ड दर्ज करें!");
+              return;
+          }
+
+          auth.signInWithEmailAndPassword(email, password)
+              .then((userCredential) => {
+                  if (userCredential.user.emailVerified) {
+                      alert("सफलतापूर्वक लॉगिन हो गए!");
+                      // window.location.href = "dashboard.html"; // टास्क पेज का लिंक
+                  } else {
+                      alert("कृपया पहले अपने ईमेल पर आए लिंक से अपना अकाउंट वेरीफाई करें!");
+                      auth.signOut();
+                  }
+              })
+              .catch((error) => {
+                  alert("लॉगिन विफल: गलत ईमेल या पासवर्ड!");
+              });
+      }
+    </script>
 </body>
 </html>
