@@ -1,172 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Earnova - Create Account</title>
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial,sans-serif;
-  background:#f5f7fb;
-  color:#18202f;
-}
-.header{
-  background:linear-gradient(135deg,#6c4cff,#8b5cf6);
-  color:white;
-  padding:28px 18px;
-  text-align:center;
-}
-.logo{font-size:30px;font-weight:800}
-.header p{margin-top:6px;opacity:.95}
-
-.signup{
-  min-height:calc(100vh - 150px);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:30px 18px;
-}
-.box{
-  width:100%;
-  max-width:430px;
-  background:white;
-  padding:28px 22px;
-  border-radius:18px;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-h2{text-align:center;margin-bottom:8px}
-.sub{
-  text-align:center;
-  color:#667085;
-  font-size:14px;
-  margin-bottom:24px;
-}
-label{
-  display:block;
-  font-size:14px;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-.group{margin-bottom:16px}
-input{
-  width:100%;
-  padding:13px;
-  border:1px solid #d0d5dd;
-  border-radius:9px;
-  font-size:15px;
-  outline:none;
-}
-input:focus{border-color:#6c4cff}
-
-.otp{
-  display:flex;
-  gap:8px;
-}
-.otp input{flex:1}
-.otp button{
-  border:0;
-  border-radius:9px;
-  padding:0 12px;
-  background:#6c4cff;
-  color:white;
-  font-weight:bold;
-}
-.mainbtn{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:10px;
-  background:#6c4cff;
-  color:white;
-  font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
-}
-.note{
-  margin-top:15px;
-  text-align:center;
-  font-size:12px;
-  color:#667085;
-  line-height:1.5;
-}
-.footer{
-  text-align:center;
-  padding:20px;
-  background:#202432;
-  color:white;
-  font-size:13px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earnova - Create Account</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; box-sizing: border-box; }
+        h2 { text-align: center; color: #333; margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 20px; }
+        label { font-weight: bold; font-size: 14px; color: #333; display: block; margin-top: 12px; }
+        input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        button { width: 100%; background: #6c5ce7; color: white; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 20px; transition: 0.3s; }
+        button:hover { background: #5b4bc4; }
+        .switch { text-align: center; margin-top: 15px; cursor: pointer; color: #007bff; font-size: 14px; }
+        .switch:hover { text-decoration: underline; }
+    </style>
 </head>
-
 <body>
 
-<header class="header">
-  <div class="logo">💰 Earnova</div>
-  <p>Complete tasks • Earn rewards</p>
-</header>
+<div class="container">
+    <!-- साइन अप फॉर्म -->
+    <div id="signup-form">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join Earnova and explore available tasks</p>
+        
+        <label>Full Name</label>
+        <input type="text" id="fullname" placeholder="Enter your full name">
 
-<section class="signup">
-  <div class="box">
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Choose a username">
 
-    <h2>Create Account</h2>
-    <p class="sub">Join Earnova and explore available tasks</p>
+        <label>Email Address</label>
+        <input type="email" id="signup-email" placeholder="Enter your email address">
 
-    <div class="group">
-      <label>Full Name</label>
-      <input type="text" placeholder="Enter your full name">
+        <label>Password</label>
+        <input type="password" id="signup-password" placeholder="Create a password">
+
+        <button onclick="registerUser()">Create Account</button>
+        <div class="switch" onclick="toggleForm('login')">Already have an account? Login</div>
     </div>
 
-    <div class="group">
-      <label>Username</label>
-      <input type="text" placeholder="Choose a username">
+    <!-- लॉगिन फॉर्म -->
+    <div id="login-form" style="display: none;">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Login to your Earnova account</p>
+
+        <label>Email Address</label>
+        <input type="email" id="login-email" placeholder="Enter your email">
+
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="Enter your password">
+
+        <button onclick="loginUser()">Login</button>
+        <div class="switch" onclick="toggleForm('signup')">Don't have an account? Create Account</div>
     </div>
+</div>
 
-    <div class="group">
-      <label>Mobile Number</label>
-      <div class="otp">
-        <input
-          type="tel"
-          maxlength="10"
-          inputmode="numeric"
-          placeholder="10-digit mobile number">
-        <button type="button">Send OTP</button>
-      </div>
-    </div>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
-    <div class="group">
-      <label>OTP</label>
-      <input
-        type="text"
-        maxlength="6"
-        inputmode="numeric"
-        placeholder="Enter OTP">
-    </div>
+<script>
+  // अपनी Firebase Config यहाँ डालें
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
-    <div class="group">
-      <label>Password</label>
-      <input
-        type="password"
-        placeholder="Create a password">
-    </div>
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
 
-<button class="mainbtn" type="button" onclick="window.location.href='Dashboard.html'">
-  Create Account
-</button>
+  // फॉर्म बदलने के लिए (Sign Up और Login के बीच स्विच)
+  function toggleForm(type) {
+      if(type === 'login') {
+          document.getElementById('signup-form').style.display = 'none';
+          document.getElementById('login-form').style.display = 'block';
+      } else {
+          document.getElementById('signup-form').style.display = 'block';
+          document.getElementById('login-form').style.display = 'none';
+      }
+  }
 
-    <p class="note">
-      Your mobile number is used for account verification.
-      Real SMS OTP verification will be connected through a secure backend.
-    </p>
+  // रजिस्टर करने का फंक्शन
+  function registerUser() {
+      const fullname = document.getElementById('fullname').value;
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
 
-  </div>
-</section>
+      if(!fullname || !username || !email || !password) {
+          alert("कृपया सभी फ़ील्ड भरें!");
+          return;
+      }
 
-<footer class="footer">
-  © 2026 Earnova. All rights reserved.
-</footer>
+      auth.createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+              // ईमेल वेरिफिकेशन लिंक भेजना
+              userCredential.user.sendEmailVerification()
+                  .then(() => {
+                      alert("रजिस्ट्रेशन सफल! आपके ईमेल पर एक वेरिफिकेशन लिंक भेजा गया है। कृपया अपना इनबॉक्स चेक करें और वेरीफाई करें।");
+                      toggleForm('login');
+                  });
+          })
+          .catch((error) => {
+              alert("त्रुटि: " + error.message);
+          });
+  }
+
+  // लॉगिन करने का फंक्शन
+  function loginUser() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      if(!email || !password) {
+          alert("कृपया ईमेल और पासवर्ड दर्ज करें!");
+          return;
+      }
+
+      auth.signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+              if (userCredential.user.emailVerified) {
+                  alert("सफलतापूर्वक लॉगिन हो गए!");
+                  // यूज़र के लॉगिन होने के बाद उसे टास्क पेज या डैशबोर्ड पर भेज सकते हैं
+                  // window.location.href = "dashboard.html";
+              } else {
+                  alert("कृपया पहले अपने ईमेल पर आए लिंक से अपना अकाउंट वेरीफाई करें!");
+                  auth.signOut();
+              }
+          })
+          .catch((error) => {
+              alert("लॉगिन विफल: गलत ईमेल या पासवर्ड!");
+          });
+  }
+</script>
 
 </body>
 </html>
