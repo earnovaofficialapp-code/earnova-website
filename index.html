@@ -3,175 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Earnova - Earn Rewards Online</title>
+<title>Earnova - Create Account</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family:Arial,sans-serif;
   background:#f5f7fb;
   color:#18202f;
 }
-
 .header{
   background:linear-gradient(135deg,#6c4cff,#8b5cf6);
   color:white;
-  padding:22px 18px;
+  padding:28px 18px;
   text-align:center;
 }
+.logo{font-size:30px;font-weight:800}
+.header p{margin-top:6px;opacity:.95}
 
-.logo{
-  font-size:30px;
-  font-weight:800;
+.signup{
+  min-height:calc(100vh - 150px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px 18px;
 }
-
-.header p{
-  margin-top:6px;
-  opacity:.95;
-}
-
-.hero{
-  text-align:center;
-  padding:55px 20px 40px;
-  background:white;
-}
-
-.hero h1{
-  font-size:34px;
-  margin-bottom:12px;
-}
-
-.hero p{
-  color:#667085;
-  font-size:17px;
-  max-width:600px;
-  margin:auto;
-  line-height:1.6;
-}
-
-.button{
-  display:inline-block;
-  margin-top:22px;
-  padding:14px 28px;
-  background:#6c4cff;
-  color:white;
-  text-decoration:none;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.button:hover{
-  opacity:.9;
-}
-
-.tasks{
-  padding:35px 20px 50px;
-  max-width:1000px;
-  margin:auto;
-}
-
-.tasks h2{
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.task-box{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:18px;
-}
-
-.card{
-  background:white;
-  padding:25px 18px;
-  border-radius:15px;
-  text-align:center;
-  box-shadow:0 4px 15px rgba(0,0,0,.07);
-}
-
-.icon{
-  font-size:40px;
-  margin-bottom:12px;
-}
-
-.card h3{
-  margin-bottom:8px;
-}
-
-.card p{
-  color:#667085;
-  line-height:1.5;
-  font-size:14px;
-}
-
-.footer{
-  margin-top:20px;
-  padding:25px;
-  text-align:center;
-  background:#202432;
-  color:white;
-}
-
-.footer a{
-  color:white;
-  margin:0 8px;
-  text-decoration:none;
-  font-size:14px;
-}
-
-.footer p{
-  margin-top:12px;
-  font-size:13px;
-  opacity:.75;
-}
-
-/* Signup */
-.signup-section{
-  display:none;
-  padding:35px 20px 50px;
-  background:#f5f7fb;
-}
-
-.signup-box{
+.box{
+  width:100%;
   max-width:430px;
-  margin:auto;
   background:white;
   padding:28px 22px;
-  border-radius:16px;
+  border-radius:18px;
   box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
-
-.signup-box h2{
-  text-align:center;
-  margin-bottom:8px;
-}
-
-.signup-box .subtitle{
+h2{text-align:center;margin-bottom:8px}
+.sub{
   text-align:center;
   color:#667085;
   font-size:14px;
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
-
-.form-group{
-  margin-bottom:16px;
-}
-
-.form-group label{
+label{
   display:block;
   font-size:14px;
   font-weight:bold;
   margin-bottom:7px;
 }
-
-.form-group input{
+.group{margin-bottom:16px}
+input{
   width:100%;
   padding:13px;
   border:1px solid #d0d5dd;
@@ -179,54 +58,45 @@ body{
   font-size:15px;
   outline:none;
 }
+input:focus{border-color:#6c4cff}
 
-.form-group input:focus{
-  border-color:#6c4cff;
-}
-
-.otp-row{
+.otp{
   display:flex;
   gap:8px;
 }
-
-.otp-row input{
-  flex:1;
-}
-
-.otp-row button{
-  padding:0 12px;
-  border:none;
+.otp input{flex:1}
+.otp button{
+  border:0;
   border-radius:9px;
+  padding:0 12px;
   background:#6c4cff;
   color:white;
   font-weight:bold;
-  cursor:pointer;
 }
-
-.otp-row button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-}
-
-.message{
-  margin-top:8px;
-  font-size:13px;
-  color:#667085;
-}
-
-.signup-submit{
+.mainbtn{
   width:100%;
-  margin-top:8px;
-}
-
-.back-button{
-  display:block;
-  text-align:center;
-  margin-top:15px;
-  color:#6c4cff;
-  text-decoration:none;
-  font-size:14px;
+  padding:14px;
+  border:0;
+  border-radius:10px;
+  background:#6c4cff;
+  color:white;
+  font-weight:bold;
+  font-size:16px;
   cursor:pointer;
+}
+.note{
+  margin-top:15px;
+  text-align:center;
+  font-size:12px;
+  color:#667085;
+  line-height:1.5;
+}
+.footer{
+  text-align:center;
+  padding:20px;
+  background:#202432;
+  color:white;
+  font-size:13px;
 }
 </style>
 </head>
@@ -238,240 +108,65 @@ body{
   <p>Complete tasks • Earn rewards</p>
 </header>
 
-<section class="hero" id="home">
-  <h1>Earn Rewards Online</h1>
-  <p>
-    Discover available online tasks, surveys, apps and other reward opportunities.
-  </p>
-  <a href="#signup" class="button" onclick="showSignup()">Get Started</a>
-</section>
-
-<!-- Signup Section -->
-<section class="signup-section" id="signup">
-
-  <div class="signup-box">
+<section class="signup">
+  <div class="box">
 
     <h2>Create Account</h2>
-    <p class="subtitle">Create your Earnova account</p>
+    <p class="sub">Join Earnova and explore available tasks</p>
 
-    <div class="form-group">
-      <label for="fullName">Full Name</label>
-      <input
-        type="text"
-        id="fullName"
-        placeholder="Enter your full name"
-        autocomplete="name">
+    <div class="group">
+      <label>Full Name</label>
+      <input type="text" placeholder="Enter your full name">
     </div>
 
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        placeholder="Choose a username"
-        autocomplete="username">
+    <div class="group">
+      <label>Username</label>
+      <input type="text" placeholder="Choose a username">
     </div>
 
-    <div class="form-group">
-      <label for="mobile">Mobile Number</label>
-
-      <div class="otp-row">
+    <div class="group">
+      <label>Mobile Number</label>
+      <div class="otp">
         <input
           type="tel"
-          id="mobile"
-          placeholder="10-digit mobile number"
           maxlength="10"
           inputmode="numeric"
-          autocomplete="tel">
-
-        <button type="button" id="otpButton" onclick="sendOTP()">
-          Send OTP
-        </button>
+          placeholder="10-digit mobile number">
+        <button type="button">Send OTP</button>
       </div>
-
-      <div class="message" id="otpMessage"></div>
     </div>
 
-    <div class="form-group">
-      <label for="otp">OTP</label>
+    <div class="group">
+      <label>OTP</label>
       <input
         type="text"
-        id="otp"
-        placeholder="Enter OTP"
         maxlength="6"
         inputmode="numeric"
-        autocomplete="one-time-code">
+        placeholder="Enter OTP">
     </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
+    <div class="group">
+      <label>Password</label>
       <input
         type="password"
-        id="password"
-        placeholder="Create a password"
-        autocomplete="new-password">
+        placeholder="Create a password">
     </div>
 
-    <button
-      type="button"
-      class="button signup-submit"
-      onclick="createAccount()">
+    <button class="mainbtn" type="button">
       Create Account
     </button>
 
-    <a class="back-button" onclick="hideSignup()">
-      ← Back to Earnova
-    </a>
-
-  </div>
-
-</section>
-
-<section class="tasks" id="tasks">
-
-  <h2>Available Tasks</h2>
-
-  <div class="task-box">
-
-    <div class="card">
-      <div class="icon">📱</div>
-      <h3>App Tasks</h3>
-      <p>Discover available app-based reward opportunities.</p>
-      <a href="#" class="button">View Tasks</a>
-    </div>
-
-    <div class="card">
-      <div class="icon">🎮</div>
-      <h3>Game Tasks</h3>
-      <p>Explore available gaming tasks and reward opportunities.</p>
-      <a href="#" class="button">View Tasks</a>
-    </div>
-
-    <div class="card">
-      <div class="icon">📝</div>
-      <h3>Surveys</h3>
-      <p>Find available surveys and see their requirements.</p>
-      <a href="#" class="button">View Surveys</a>
-    </div>
-
-    <div class="card">
-      <div class="icon">🎬</div>
-      <h3>Video Tasks</h3>
-      <p>Explore available video-based reward opportunities.</p>
-      <a href="#" class="button">View Tasks</a>
-    </div>
+    <p class="note">
+      Your mobile number is used for account verification.
+      Real SMS OTP verification will be connected through a secure backend.
+    </p>
 
   </div>
 </section>
 
 <footer class="footer">
-  <div>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms</a>
-    <a href="#">Contact</a>
-  </div>
-
-  <p>© 2026 Earnova. All rights reserved.</p>
+  © 2026 Earnova. All rights reserved.
 </footer>
-
-<script>
-
-function showSignup(){
-  document.getElementById("signup").style.display="block";
-
-  setTimeout(function(){
-    document.getElementById("signup").scrollIntoView({
-      behavior:"smooth"
-    });
-  },100);
-}
-
-function hideSignup(){
-  document.getElementById("signup").style.display="none";
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-
-function sendOTP(){
-
-  const mobile = document.getElementById("mobile").value.trim();
-  const message = document.getElementById("otpMessage");
-  const button = document.getElementById("otpButton");
-
-  if(!/^[0-9]{10}$/.test(mobile)){
-    message.textContent="Please enter a valid 10-digit mobile number.";
-    return;
-  }
-
-  /*
-    REAL OTP PLACEHOLDER
-
-    This button currently does NOT send an SMS.
-    A secure backend + SMS provider must be connected here.
-
-    Never put an SMS API secret/key directly inside this
-    HTML/JavaScript file.
-  */
-
-  message.textContent=
-    "OTP service will be connected securely after backend setup.";
-
-  button.disabled=true;
-
-  setTimeout(function(){
-    button.disabled=false;
-    button.textContent="Send OTP";
-  },30000);
-
-  button.textContent="Sent";
-}
-
-function createAccount(){
-
-  const name =
-    document.getElementById("fullName").value.trim();
-
-  const username =
-    document.getElementById("username").value.trim();
-
-  const mobile =
-    document.getElementById("mobile").value.trim();
-
-  const otp =
-    document.getElementById("otp").value.trim();
-
-  const password =
-    document.getElementById("password").value;
-
-  if(!name || !username || !mobile || !otp || !password){
-    alert("Please fill all fields.");
-    return;
-  }
-
-  if(!/^[0-9]{10}$/.test(mobile)){
-    alert("Please enter a valid 10-digit mobile number.");
-    return;
-  }
-
-  if(!/^[0-9]{6}$/.test(otp)){
-    alert("Please enter a valid 6-digit OTP.");
-    return;
-  }
-
-  if(password.length < 8){
-    alert("Password must contain at least 8 characters.");
-    return;
-  }
-
-  alert(
-    "Signup page is ready. Real OTP verification needs to be connected to the secure backend."
-  );
-}
-
-</script>
 
 </body>
 </html>
