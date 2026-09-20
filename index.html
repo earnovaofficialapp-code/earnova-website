@@ -265,7 +265,7 @@
               .then((userCredential) => {
                   if (userCredential.user.emailVerified) {
                       alert("सफलतापूर्वक लॉगिन हो गए!");
-                      // window.location.href = "Dashboard.html"; // टास्क पेज का लिंक
+                       window.location.href = "Dashboard.html";  टास्क पेज का लिंक
                   } else {
                       alert("कृपया पहले अपने ईमेल पर आए लिंक से अपना अकाउंट वेरीफाई करें!");
                       auth.signOut();
