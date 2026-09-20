@@ -251,7 +251,7 @@
               });
       }
 
-      // लॉगिन करने का फंक्शन
+       // लॉगिन करने का फंक्शन
       function loginUser() {
           const email = document.getElementById('login-email').value;
           const password = document.getElementById('login-password').value;
@@ -265,7 +265,7 @@
               .then((userCredential) => {
                   if (userCredential.user.emailVerified) {
                       alert("सफलतापूर्वक लॉगिन हो गए!");
-                      // window.location.href = "dashboard.html"; // टास्क पेज का लिंक
+                      // window.location.href = "Dashboard.html"; // टास्क पेज का लिंक
                   } else {
                       alert("कृपया पहले अपने ईमेल पर आए लिंक से अपना अकाउंट वेरीफाई करें!");
                       auth.signOut();
