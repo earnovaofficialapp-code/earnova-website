@@ -146,5 +146,32 @@ body{
   © 2026 Earnova. All rights reserved.
 </footer>
 
+<!-- Firebase SDKs for Security Protection -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+<script>
+  // Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyB9quyla-7U4dvVzgVrTgiQ7YL5Hbk9AvU",
+    authDomain: "earnovaoffical.firebaseapp.com",
+    projectId: "earnovaoffical",
+    storageBucket: "https://earnovaoffical.firebasestorage.app",
+    messagingSenderId: "897358858040",
+    appId: "1:897358858040:web:ec79d5322f2a2da6e223cd"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Security Check: Bina Login ke Dashboard khulne se rokne ke liye
+  auth.onAuthStateChanged((user) => {
+      if (!user) {
+          alert("Kripya pehle login karein!");
+          window.location.href = "https://earnovaoffical.com/";
+      }
+  });
+</script>
+
 </body>
 </html>
