@@ -202,7 +202,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <script>
-      // अपनी Firebase Config यहाँ डालें
+      // Firebase Config
       const firebaseConfig = {
         apiKey: "AIzaSyB9quyla-7U4dvVzgVrTgiQ7YL5Hbk9AvU",
         authDomain: "earnovaoffical.firebaseapp.com",
@@ -215,7 +215,7 @@
       firebase.initializeApp(firebaseConfig);
       const auth = firebase.auth();
 
-      // व्यू स्विच करने के लिए (Signup से Login और उल्टा)
+      // View Switch karne ke liye
       function switchView(view) {
           if(view === 'login') {
               document.getElementById('signup-section').style.display = 'none';
@@ -226,7 +226,7 @@
           }
       }
 
-      // रजिस्टर करने का फंक्शन
+      // Register karne ka function
       function registerUser() {
           const fullname = document.getElementById('fullname').value;
           const username = document.getElementById('username').value;
@@ -234,7 +234,7 @@
           const password = document.getElementById('signup-password').value;
 
           if(!fullname || !username || !email || !password) {
-              alert("कृपया सभी फ़ील्ड भरें!");
+              alert("Kripya sabhi field bharein!");
               return;
           }
 
@@ -242,37 +242,38 @@
               .then((userCredential) => {
                   userCredential.user.sendEmailVerification()
                       .then(() => {
-                          alert("रजिस्ट्रेशन सफल! आपके ईमेल पर वेरिफिकेशन लिंक भेजा गया है। कृपया वेरीफाई करें।");
+                          alert("Registration safal! Aapke email par verification link bheja gaya hai. Kripya verify karein.");
                           switchView('login');
                       });
               })
               .catch((error) => {
-                  alert("त्रुटि: " + error.message);
+                  alert("Truti: " + error.message);
               });
       }
 
-       // लॉगिन करने का फंक्शन
+       // Login karne ka function
       function loginUser() {
           const email = document.getElementById('login-email').value;
           const password = document.getElementById('login-password').value;
 
           if(!email || !password) {
-              alert("कृपया ईमेल और पासवर्ड दर्ज करें!");
+              alert("Kripya email aur password darj karein!");
               return;
           }
 
           auth.signInWithEmailAndPassword(email, password)
               .then((userCredential) => {
-                  if (userCredential.user.emailVerified) {
-                      alert("सफलतापूर्वक लॉगिन हो गए!");
-                       window.location.href = "Dashboard.html";  टास्क पेज का लिंक
+                  const user = userCredential.user;
+                  if (user.emailVerified) {
+                      alert("Safalatapoorvak login ho gaye!");
+                      window.location.href = "https://earnovaoffical.com/Dashboard.html";
                   } else {
-                      alert("कृपया पहले अपने ईमेल पर आए लिंक से अपना अकाउंट वेरीफाई करें!");
+                      alert("Kripya pehle apne email par aaye link se account verify karein!");
                       auth.signOut();
                   }
               })
               .catch((error) => {
-                  alert("लॉगिन विफल: गलत ईमेल या पासवर्ड!");
+                  alert("Login vifal: Galat email ya password!");
               });
       }
     </script>
