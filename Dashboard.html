@@ -4,52 +4,93 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Earnova - Tasks</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 body{
   font-family:Arial,sans-serif;
   background:#f5f7fb;
   color:#18202f;
 }
-
 .header{
   background:linear-gradient(135deg,#6c4cff,#8b5cf6);
   color:white;
   padding:22px 18px;
   text-align:center;
 }
-
 .logo{font-size:30px;font-weight:800}
 .header p{margin-top:6px;opacity:.95}
-
 .welcome{
   background:white;
   text-align:center;
   padding:30px 20px;
 }
-
 .welcome h1{font-size:28px;margin-bottom:8px}
 .welcome p{color:#667085}
+
+/* Wallet & Withdrawal Section Styling */
+.wallet-container {
+  max-width: 1000px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.wallet-card, .withdraw-card {
+  background: white;
+  padding: 22px 18px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.07);
+}
+.wallet-card h3, .withdraw-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #6c4cff;
+}
+.balance-info {
+  font-size: 16px;
+  margin-top: 8px;
+  color: #18202f;
+  font-weight: bold;
+}
+.withdraw-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.withdraw-card button {
+  width: 100%;
+  padding: 12px;
+  background: #6c4cff;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+.withdraw-card button:hover {
+  background: #5b3ee0;
+}
 
 .tasks{
   max-width:1000px;
   margin:auto;
   padding:30px 20px 50px;
 }
-
 .tasks h2{
   text-align:center;
   margin-bottom:24px;
 }
-
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
   gap:18px;
 }
-
 .card{
   background:white;
   padding:26px 18px;
@@ -57,20 +98,16 @@ body{
   text-align:center;
   box-shadow:0 4px 15px rgba(0,0,0,.07);
 }
-
 .icon{
   font-size:42px;
   margin-bottom:12px;
 }
-
 .card h3{margin-bottom:8px}
-
 .card p{
   color:#667085;
   font-size:14px;
   line-height:1.5;
 }
-
 .btn{
   display:inline-block;
   margin-top:18px;
@@ -81,7 +118,6 @@ body{
   border-radius:9px;
   font-weight:bold;
 }
-
 .footer{
   padding:25px;
   text-align:center;
@@ -91,7 +127,6 @@ body{
 }
 </style>
 </head>
-
 <body>
 
 <header class="header">
@@ -104,51 +139,61 @@ body{
   <p>Explore available reward opportunities</p>
 </section>
 
+<!-- Top Section: Wallet Balance & Withdrawal Form -->
+<section class="wallet-container">
+  <div class="wallet-card">
+    <h3>💳 Your Wallet</h3>
+    <p class="balance-info">Coins: <span id="user-coins">0</span> 🪙</p>
+    <p class="balance-info">Rupees: ₹<span id="user-rupees">0.00</span></p>
+  </div>
+
+  <div class="withdraw-card">
+    <h3>💸 Withdraw Funds</h3>
+    <p style="font-size: 13px; color: #667085; margin-bottom: 8px;">Minimum Withdrawal: ₹50</p>
+    <input type="number" id="withdraw-amount" placeholder="Amount (in ₹)" min="50" />
+    <input type="text" id="withdraw-upi" placeholder="Enter UPI ID (e.g. name@upi)" />
+    <button onclick="submitWithdrawal()">Withdraw Now</button>
+  </div>
+</section>
+
 <section class="tasks">
-
   <h2>Available Tasks</h2>
-
   <div class="grid">
-
     <div class="card">
       <div class="icon">📱</div>
       <h3>App Tasks</h3>
       <p>Explore available app-based reward opportunities.</p>
       <a href="#" class="btn">View Tasks</a>
     </div>
-
     <div class="card">
       <div class="icon">🎮</div>
       <h3>Game Tasks</h3>
       <p>Explore available gaming reward opportunities.</p>
       <a href="#" class="btn">View Tasks</a>
     </div>
-
     <div class="card">
       <div class="icon">📝</div>
       <h3>Surveys</h3>
       <p>Find available surveys and their requirements.</p>
       <a href="#" class="btn">View Surveys</a>
     </div>
-
     <div class="card">
       <div class="icon">🎬</div>
       <h3>Video Tasks</h3>
       <p>Explore available video-based opportunities.</p>
       <a href="#" class="btn">View Tasks</a>
     </div>
-
   </div>
-
 </section>
 
 <footer class="footer">
   © 2026 Earnova. All rights reserved.
 </footer>
 
-<!-- Firebase SDKs for Security Protection -->
+<!-- Firebase SDKs for Security Protection & Firestore -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
   // Firebase Configuration
@@ -163,14 +208,69 @@ body{
 
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
+  const db = firebase.firestore();
 
-  // Security Check: Bina Login ke Dashboard khulne se rokne ke liye
+  // Security Check & Real-time Balance Display
   auth.onAuthStateChanged((user) => {
       if (!user) {
           alert("Kripya pehle login karein!");
           window.location.href = "https://earnovaoffical.com/";
+      } else {
+          // Fetch Realtime Balance
+          db.collection("users").doc(user.uid).onSnapshot((doc) => {
+            if (doc.exists) {
+              const data = doc.data();
+              document.getElementById("user-coins").innerText = data.coins || 0;
+              document.getElementById("user-rupees").innerText = (data.rupees || 0).toFixed(2);
+            }
+          });
       }
   });
+
+  // Withdrawal Submit Function
+  function submitWithdrawal() {
+    const user = auth.currentUser;
+    const amount = parseFloat(document.getElementById('withdraw-amount').value);
+    const upiId = document.getElementById('withdraw-upi').value.trim();
+
+    if (!user) {
+      alert("Pehle Login karein!");
+      return;
+    }
+
+    if (!upiId) {
+      alert("Kripya sahi UPI ID daalein!");
+      return;
+    }
+
+    if (isNaN(amount) || amount < 50) {
+      alert("Minimum withdrawal threshold ₹50 hai.");
+      return;
+    }
+
+    db.collection("users").doc(user.uid).get().then((doc) => {
+      if (doc.exists && (doc.data().rupees || 0) >= amount) {
+        // Add to withdrawals collection
+        db.collection("withdrawals").add({
+          userId: user.uid,
+          amount: amount,
+          upiId: upiId,
+          status: "pending",
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+          // Deduct user balance
+          db.collection("users").doc(user.uid).update({
+            rupees: firebase.firestore.FieldValue.increment(-amount)
+          });
+          alert("Withdrawal request successful!");
+          document.getElementById('withdraw-amount').value = '';
+          document.getElementById('withdraw-upi').value = '';
+        });
+      } else {
+        alert("Aapke paas paryapt balance nahi hai!");
+      }
+    });
+  }
 </script>
 
 </body>
