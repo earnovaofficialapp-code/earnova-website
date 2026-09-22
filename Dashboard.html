@@ -4,192 +4,261 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Earnova - Tasks & Wallet</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
   font-family:Arial,sans-serif;
   background:#f5f7fb;
   color:#18202f;
 }
 
-/* Header & Navigation Bar */
+/* HEADER */
 .header{
   background:linear-gradient(135deg,#6c4cff,#8b5cf6);
   color:white;
   padding:15px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-.menu-btn {
-  font-size: 26px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: white;
-}
-.logo{font-size:24px;font-weight:800}
-
-/* Side Menu Navigation Drawer */
-.side-menu {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  background-color: #202432;
-  overflow-x: hidden;
-  transition: 0.3s;
-  padding-top: 50px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
 }
 
-/* Task Summary Box inside Side Menu */
-.task-summary-box {
-  background: #2d3345;
-  margin: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  color: white;
-}
-.task-summary-box h4 {
-  color: #8b5cf6;
-  font-size: 14px;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.task-stat {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  margin-top: 6px;
-  color: #d0d5dd;
-}
-.badge-pending { color: #f39c12; font-weight: bold; }
-.badge-completed { color: #27ae60; font-weight: bold; }
-
-.side-menu a {
-  padding: 12px 25px;
-  text-decoration: none;
-  font-size: 15px;
-  color: #d0d5dd;
-  display: block;
-  transition: 0.2s;
-}
-.side-menu a:hover {
-  color: #ffffff;
-  background-color: #2d3345;
-}
-.side-menu .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
+.menu-btn{
+  font-size:26px;
+  cursor:pointer;
+  background:none;
+  border:none;
+  color:white;
 }
 
-/* Page Overlay when Menu is Open */
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 999;
+.logo{
+  font-size:24px;
+  font-weight:800;
 }
 
+/* SIDE MENU */
+.side-menu{
+  height:100%;
+  width:0;
+  position:fixed;
+  z-index:1000;
+  top:0;
+  left:0;
+  background-color:#202432;
+  overflow-x:hidden;
+  transition:0.3s;
+  padding-top:50px;
+}
+
+.task-summary-box{
+  background:#2d3345;
+  margin:15px;
+  padding:15px;
+  border-radius:10px;
+  color:white;
+}
+
+.task-summary-box h4{
+  color:#8b5cf6;
+  font-size:14px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+.task-stat{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin-top:6px;
+  color:#d0d5dd;
+}
+
+.badge-pending{
+  color:#f39c12;
+  font-weight:bold;
+}
+
+.badge-completed{
+  color:#27ae60;
+  font-weight:bold;
+}
+
+.side-menu a{
+  padding:12px 25px;
+  text-decoration:none;
+  font-size:15px;
+  color:#d0d5dd;
+  display:block;
+  transition:.2s;
+}
+
+.side-menu a:hover{
+  color:#fff;
+  background-color:#2d3345;
+}
+
+.side-menu .close-btn{
+  position:absolute;
+  top:10px;
+  right:20px;
+  font-size:30px;
+  color:white;
+  cursor:pointer;
+}
+
+/* OVERLAY */
+.overlay{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.5);
+  z-index:999;
+}
+
+/* WELCOME */
 .welcome{
   background:white;
   text-align:center;
   padding:25px 20px;
 }
-.welcome h1{font-size:26px;margin-bottom:6px}
-.welcome p{color:#667085}
 
-/* Wallet & Withdrawal Styling */
-.wallet-container {
-  max-width: 1000px;
-  margin: 20px auto 0;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-}
-.wallet-card, .withdraw-card, .history-card, .contact-card {
-  background: white;
-  padding: 22px 18px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,.07);
-}
-.wallet-card h3, .withdraw-card h3, .history-card h3, .contact-card h3 {
-  font-size: 20px;
-  margin-bottom: 12px;
-  color: #6c4cff;
-}
-.balance-info {
-  font-size: 16px;
-  margin-top: 8px;
-  color: #18202f;
-  font-weight: bold;
-}
-.withdraw-card input {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border: 1px solid #d0d5dd;
-  border-radius: 8px;
-  font-size: 14px;
-}
-.withdraw-card button {
-  width: 100%;
-  padding: 12px;
-  background: #6c4cff;
-  color: white;
-  border: none;
-  border-radius: 9px;
-  font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
-  margin-top: 8px;
+.welcome h1{
+  font-size:26px;
+  margin-bottom:6px;
 }
 
-/* History & Contact Section */
-.history-container, .contact-container {
-  max-width: 1000px;
-  margin: 20px auto 0;
-  padding: 0 20px;
+.welcome p{
+  color:#667085;
 }
-.history-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-.history-table th, .history-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
-  font-size: 14px;
-}
-.status-pending { color: #f39c12; font-weight: bold; }
-.status-completed { color: #27ae60; font-weight: bold; }
 
+/* WALLET */
+.wallet-container{
+  max-width:1000px;
+  margin:20px auto 0;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;
+}
+
+.wallet-card,
+.withdraw-card,
+.history-card,
+.contact-card{
+  background:white;
+  padding:22px 18px;
+  border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.wallet-card h3,
+.withdraw-card h3,
+.history-card h3,
+.contact-card h3{
+  font-size:20px;
+  margin-bottom:12px;
+  color:#6c4cff;
+}
+
+.balance-info{
+  font-size:16px;
+  margin-top:8px;
+  color:#18202f;
+  font-weight:bold;
+}
+
+.withdraw-card input{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:1px solid #d0d5dd;
+  border-radius:8px;
+  font-size:14px;
+}
+
+.withdraw-card button{
+  width:100%;
+  padding:12px;
+  background:#6c4cff;
+  color:white;
+  border:none;
+  border-radius:9px;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  margin-top:8px;
+}
+
+.withdraw-card button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+/* HISTORY */
+.history-container,
+.contact-container{
+  max-width:1000px;
+  margin:20px auto 0;
+  padding:0 20px;
+}
+
+.history-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+.history-table th,
+.history-table td{
+  padding:10px;
+  text-align:left;
+  border-bottom:1px solid #e0e0e0;
+  font-size:14px;
+}
+
+.status-pending{
+  color:#f39c12;
+  font-weight:bold;
+}
+
+.status-completed{
+  color:#27ae60;
+  font-weight:bold;
+}
+
+.status-rejected{
+  color:#e74c3c;
+  font-weight:bold;
+}
+
+/* TASKS */
 .tasks{
   max-width:1000px;
   margin:auto;
   padding:30px 20px 50px;
 }
+
 .tasks h2{
   text-align:center;
   margin-bottom:24px;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
   gap:18px;
 }
+
 .card{
   background:white;
   padding:26px 18px;
@@ -197,9 +266,22 @@ body{
   text-align:center;
   box-shadow:0 4px 15px rgba(0,0,0,.07);
 }
-.icon{ font-size:42px; margin-bottom:12px; }
-.card h3{margin-bottom:8px}
-.card p{ color:#667085; font-size:14px; line-height:1.5; }
+
+.icon{
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.card h3{
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#667085;
+  font-size:14px;
+  line-height:1.5;
+}
+
 .btn{
   display:inline-block;
   margin-top:18px;
@@ -210,6 +292,8 @@ body{
   border-radius:9px;
   font-weight:bold;
 }
+
+/* FOOTER */
 .footer{
   padding:25px;
   text-align:center;
@@ -217,105 +301,192 @@ body{
   color:white;
   font-size:13px;
 }
+
+/* MOBILE HISTORY */
+@media(max-width:600px){
+  .history-table th,
+  .history-table td{
+    font-size:12px;
+    padding:8px 5px;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<!-- Header with Menu Icon -->
+<!-- HEADER -->
 <header class="header">
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
   <div class="logo">💰 Earnova</div>
-  <div style="width: 26px;"></div>
+  <div style="width:26px;"></div>
 </header>
 
-<!-- Side Menu Navigation Drawer -->
+<!-- SIDE MENU -->
 <div id="side-menu" class="side-menu">
+
   <span class="close-btn" onclick="toggleMenu()">&times;</span>
 
-  <!-- Task Progress Box in Side Menu -->
   <div class="task-summary-box">
     <h4>📊 Task Overview</h4>
+
     <div class="task-stat">
       <span>Completed Tasks:</span>
       <span id="completed-tasks-count" class="badge-completed">0</span>
     </div>
+
     <div class="task-stat">
       <span>Pending Tasks:</span>
       <span id="pending-tasks-count" class="badge-pending">0</span>
     </div>
   </div>
 
-  <hr style="border: 0; border-top: 1px solid #2d3345; margin: 10px 0;">
+  <hr style="border:0;border-top:1px solid #2d3345;margin:10px 0;">
 
-  <!-- Navigation Links -->
-  <a href="#" onclick="showSection('dashboard')">🏠 Home / Tasks</a>
-  <a href="#" onclick="showSection('history')">📜 Withdrawal History</a>
-  <a href="#" onclick="showSection('contact')">📧 Contact Us</a>
-  <a href="mailto:support@earnovaoffical.com">💬 Email Support</a>
-  <a href="#" onclick="logoutUser()">🚪 Logout</a>
+  <a href="#" onclick="showSection('dashboard');return false;">
+    🏠 Home / Tasks
+  </a>
+
+  <a href="#" onclick="showSection('history');return false;">
+    📜 Withdrawal History
+  </a>
+
+  <a href="#" onclick="showSection('contact');return false;">
+    📧 Contact Us
+  </a>
+
+  <a href="mailto:support@earnovaoffical.com">
+    💬 Email Support
+  </a>
+
+  <a href="#" onclick="logoutUser();return false;">
+    🚪 Logout
+  </a>
+
 </div>
+
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
+<!-- WELCOME -->
 <section class="welcome">
   <h1>Welcome to Earnova 👋</h1>
   <p>Complete tasks • Earn rewards</p>
 </section>
 
-<!-- Dashboard View (Home) -->
+<!-- DASHBOARD -->
 <div id="dashboard-view">
+
   <section class="wallet-container">
+
+    <!-- WALLET -->
     <div class="wallet-card">
       <h3>💳 Your Wallet</h3>
-      <p class="balance-info">Coins: <span id="user-coins">0</span> 🪙</p>
-      <p class="balance-info">Rupees: ₹<span id="user-rupees">0.00</span></p>
+
+      <p class="balance-info">
+        Coins:
+        <span id="user-coins">0</span> 🪙
+      </p>
+
+      <p class="balance-info">
+        Rupees:
+        ₹<span id="user-rupees">0.00</span>
+      </p>
     </div>
 
+    <!-- WITHDRAW -->
     <div class="withdraw-card">
+
       <h3>💸 Withdraw Funds</h3>
-      <p style="font-size: 13px; color: #667085; margin-bottom: 8px;">Minimum Withdrawal: ₹50</p>
-      <input type="number" id="withdraw-amount" placeholder="Amount (in ₹)" min="50" />
-      <input type="text" id="withdraw-upi" placeholder="Enter UPI ID (e.g. name@upi)" />
-      <button onclick="submitWithdrawal()">Withdraw Now</button>
+
+      <p style="font-size:13px;color:#667085;margin-bottom:8px;">
+        Minimum Withdrawal: ₹20
+      </p>
+
+      <input
+        type="number"
+        id="withdraw-amount"
+        placeholder="Amount (₹)"
+        min="20"
+        step="0.01"
+        inputmode="decimal"
+      >
+
+      <input
+        type="text"
+        id="withdraw-upi"
+        placeholder="Enter UPI ID (e.g. name@upi)"
+        maxlength="100"
+        autocomplete="off"
+      >
+
+      <button id="withdraw-button" onclick="submitWithdrawal()">
+        Withdraw Now
+      </button>
+
     </div>
+
   </section>
 
+  <!-- TASKS -->
   <section class="tasks">
+
     <h2>Available Tasks</h2>
+
     <div class="grid">
+
       <div class="card">
         <div class="icon">📱</div>
         <h3>App Tasks</h3>
-        <p>Explore available app-based reward opportunities.</p>
+        <p>
+          Explore available app-based reward opportunities.
+        </p>
         <a href="#" class="btn">View Tasks</a>
       </div>
+
       <div class="card">
         <div class="icon">🎮</div>
         <h3>Game Tasks</h3>
-        <p>Explore available gaming reward opportunities.</p>
+        <p>
+          Explore available gaming reward opportunities.
+        </p>
         <a href="#" class="btn">View Tasks</a>
       </div>
+
       <div class="card">
         <div class="icon">📝</div>
         <h3>Surveys</h3>
-        <p>Find available surveys and their requirements.</p>
+        <p>
+          Find available surveys and their requirements.
+        </p>
         <a href="#" class="btn">View Surveys</a>
       </div>
+
       <div class="card">
         <div class="icon">🎬</div>
         <h3>Video Tasks</h3>
-        <p>Explore available video-based opportunities.</p>
+        <p>
+          Explore available video-based opportunities.
+        </p>
         <a href="#" class="btn">View Tasks</a>
       </div>
+
     </div>
+
   </section>
+
 </div>
 
-<!-- History View -->
-<div id="history-view" style="display: none;">
+<!-- HISTORY -->
+<div id="history-view" style="display:none;">
+
   <section class="history-container">
+
     <div class="history-card">
+
       <h3>📜 Withdrawal History</h3>
+
       <table class="history-table">
+
         <thead>
           <tr>
             <th>Amount</th>
@@ -323,169 +494,630 @@ body{
             <th>Status</th>
           </tr>
         </thead>
+
         <tbody id="history-list">
+
           <tr>
-            <td colspan="3" style="text-align:center; color:#888;">Loading history...</td>
+            <td colspan="3" style="text-align:center;color:#888;">
+              Loading history...
+            </td>
           </tr>
+
         </tbody>
+
       </table>
+
     </div>
+
   </section>
+
 </div>
 
-<!-- Contact Us View -->
-<div id="contact-view" style="display: none;">
+<!-- CONTACT -->
+<div id="contact-view" style="display:none;">
+
   <section class="contact-container">
+
     <div class="contact-card">
+
       <h3>📧 Contact Us</h3>
-      <p style="margin-bottom: 10px; color: #667085;">Have any questions or payout issues? Reach out to us!</p>
-      <p><strong>Official Email:</strong> <a href="mailto:support@earnovaoffical.com" style="color:#6c4cff;">support@earnovaoffical.com</a></p>
-      <p style="margin-top: 8px;"><strong>Response Time:</strong> Within 24 Hours</p>
+
+      <p style="margin-bottom:10px;color:#667085;">
+        Have any questions or payout issues?
+        Reach out to us!
+      </p>
+
+      <p>
+        <strong>Official Email:</strong>
+        <a
+          href="mailto:support@earnovaoffical.com"
+          style="color:#6c4cff;"
+        >
+          support@earnovaoffical.com
+        </a>
+      </p>
+
+      <p style="margin-top:8px;">
+        <strong>Response Time:</strong>
+        Within 24 Hours
+      </p>
+
     </div>
+
   </section>
+
 </div>
 
+<!-- FOOTER -->
 <footer class="footer">
   © 2026 Earnova. All rights reserved.
 </footer>
 
-<!-- Firebase SDKs -->
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
-  // Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyB9quyla-7U4dvVzgVrTgiQ7YL5Hbk9AvU",
-    authDomain: "earnovaoffical.firebaseapp.com",
-    projectId: "earnovaoffical",
-    storageBucket: "https://earnovaoffical.firebasestorage.app",
-    messagingSenderId: "897358858040",
-    appId: "1:897358858040:web:ec79d5322f2a2da6e223cd"
-  };
 
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db = firebase.firestore();
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
-  // Menu Drawer Control
-  function toggleMenu() {
-    const menu = document.getElementById("side-menu");
-    const overlay = document.getElementById("overlay");
-    if (menu.style.width === "260px") {
-      menu.style.width = "0";
-      overlay.style.display = "none";
-    } else {
-      menu.style.width = "260px";
-      overlay.style.display = "block";
-    }
+const firebaseConfig = {
+  apiKey: "AIzaSyB9quyla-7U4dvVzgVrTgiQ7YL5Hbk9AvU",
+  authDomain: "earnovaoffical.firebaseapp.com",
+  projectId: "earnovaoffical",
+  storageBucket: "https://earnovaoffical.firebasestorage.app",
+  messagingSenderId: "897358858040",
+  appId: "1:897358858040:web:ec79d5322f2a2da6e223cd"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+const MIN_WITHDRAWAL = 20;
+
+let currentUser = null;
+let withdrawalProcessing = false;
+
+
+/* =========================
+   MENU
+========================= */
+
+function toggleMenu(){
+
+  const menu = document.getElementById("side-menu");
+  const overlay = document.getElementById("overlay");
+
+  if(menu.style.width === "260px"){
+
+    menu.style.width = "0";
+    overlay.style.display = "none";
+
+  }else{
+
+    menu.style.width = "260px";
+    overlay.style.display = "block";
+
   }
+}
 
-  // Navigation Switcher
-  function showSection(sectionName) {
+
+/* =========================
+   PAGE SECTIONS
+========================= */
+
+function showSection(sectionName){
+
+  if(
+    document.getElementById("side-menu").style.width === "260px"
+  ){
     toggleMenu();
-    document.getElementById("dashboard-view").style.display = "none";
-    document.getElementById("history-view").style.display = "none";
-    document.getElementById("contact-view").style.display = "none";
-
-    if (sectionName === 'dashboard') {
-      document.getElementById("dashboard-view").style.display = "block";
-    } else if (sectionName === 'history') {
-      document.getElementById("history-view").style.display = "block";
-    } else if (sectionName === 'contact') {
-      document.getElementById("contact-view").style.display = "block";
-    }
   }
 
-  // Security Check & User Data Load
-  auth.onAuthStateChanged((user) => {
-      if (!user) {
-          alert("Kripya pehle login karein!");
-          window.location.href = "https://earnovaoffical.com/";
-      } else {
-          // 1. Balance & Task Counter Fetching
-          db.collection("users").doc(user.uid).onSnapshot((doc) => {
-            if (doc.exists) {
-              const data = doc.data();
-              document.getElementById("user-coins").innerText = data.coins || 0;
-              document.getElementById("user-rupees").innerText = (data.rupees || 0).toFixed(2);
-              
-              // Dynamic Task Counters
-              document.getElementById("completed-tasks-count").innerText = data.completedTasks || 0;
-              document.getElementById("pending-tasks-count").innerText = data.pendingTasks || 0;
-            }
-          });
+  document.getElementById("dashboard-view").style.display = "none";
+  document.getElementById("history-view").style.display = "none";
+  document.getElementById("contact-view").style.display = "none";
 
-          // 2. Withdrawal History
-          loadWithdrawalHistory(user.uid);
+  if(sectionName === "dashboard"){
+    document.getElementById("dashboard-view").style.display = "block";
+  }
+
+  if(sectionName === "history"){
+    document.getElementById("history-view").style.display = "block";
+  }
+
+  if(sectionName === "contact"){
+    document.getElementById("contact-view").style.display = "block";
+  }
+}
+
+
+/* =========================
+   AUTH CHECK
+========================= */
+
+auth.onAuthStateChanged((user) => {
+
+  if(!user){
+
+    alert("Kripya pehle login karein!");
+
+    window.location.href =
+      "https://earnovaoffical.com/";
+
+    return;
+  }
+
+  currentUser = user;
+
+  loadUserData(user.uid);
+  loadWithdrawalHistory(user.uid);
+
+});
+
+
+/* =========================
+   USER DATA
+========================= */
+
+function loadUserData(userId){
+
+  db.collection("users")
+    .doc(userId)
+    .onSnapshot(
+
+      (doc) => {
+
+        if(!doc.exists){
+          return;
+        }
+
+        const data = doc.data();
+
+        const coins =
+          Number(data.coins || 0);
+
+        const rupees =
+          Number(data.rupees || 0);
+
+        const completed =
+          Number(data.completedTasks || 0);
+
+        const pending =
+          Number(data.pendingTasks || 0);
+
+        document.getElementById(
+          "user-coins"
+        ).innerText = coins;
+
+        document.getElementById(
+          "user-rupees"
+        ).innerText = rupees.toFixed(2);
+
+        document.getElementById(
+          "completed-tasks-count"
+        ).innerText = completed;
+
+        document.getElementById(
+          "pending-tasks-count"
+        ).innerText = pending;
+
+      },
+
+      (error) => {
+
+        console.error(
+          "User data error:",
+          error
+        );
+
       }
-  });
 
-  // History Fetcher
-  function loadWithdrawalHistory(userId) {
-    db.collection("withdrawals")
-      .where("userId", "==", userId)
-      .onSnapshot((snapshot) => {
-        const historyList = document.getElementById("history-list");
+    );
+}
+
+
+/* =========================
+   WITHDRAWAL HISTORY
+========================= */
+
+function loadWithdrawalHistory(userId){
+
+  db.collection("withdrawals")
+    .where("userId","==",userId)
+    .onSnapshot(
+
+      (snapshot) => {
+
+        const historyList =
+          document.getElementById(
+            "history-list"
+          );
+
         historyList.innerHTML = "";
 
-        if (snapshot.empty) {
-          historyList.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#888;">Koi history nahi hai</td></tr>`;
+        if(snapshot.empty){
+
+          historyList.innerHTML = `
+            <tr>
+              <td colspan="3"
+                  style="text-align:center;color:#888;">
+                Koi withdrawal history nahi hai
+              </td>
+            </tr>
+          `;
+
           return;
         }
 
         snapshot.forEach((doc) => {
+
           const data = doc.data();
-          const statusClass = data.status === "completed" ? "status-completed" : "status-pending";
+
+          const amount =
+            Number(data.amount || 0);
+
+          const upiId =
+            escapeHTML(data.upiId || "");
+
+          const status =
+            String(data.status || "pending")
+              .toLowerCase();
+
+          let statusClass =
+            "status-pending";
+
+          if(status === "completed"){
+            statusClass = "status-completed";
+          }
+
+          if(status === "rejected"){
+            statusClass = "status-rejected";
+          }
+
           historyList.innerHTML += `
             <tr>
-              <td>₹${data.amount}</td>
-              <td>${data.upiId}</td>
-              <td class="${statusClass}">${data.status.toUpperCase()}</td>
+              <td>₹${amount.toFixed(2)}</td>
+              <td>${upiId}</td>
+              <td class="${statusClass}">
+                ${escapeHTML(status.toUpperCase())}
+              </td>
             </tr>
           `;
+
         });
-      });
-  }
 
-  // Submit Withdrawal
-  function submitWithdrawal() {
-    const user = auth.currentUser;
-    const amount = parseFloat(document.getElementById('withdraw-amount').value);
-    const upiId = document.getElementById('withdraw-upi').value.trim();
+      },
 
-    if (!user) return alert("Pehle Login karein!");
-    if (!upiId) return alert("Kripya sahi UPI ID daalein!");
-    if (isNaN(amount) || amount < 50) return alert("Minimum withdrawal threshold ₹50 hai.");
+      (error) => {
 
-    db.collection("users").doc(user.uid).get().then((doc) => {
-      if (doc.exists && (doc.data().rupees || 0) >= amount) {
-        db.collection("withdrawals").add({
-          userId: user.uid,
-          amount: amount,
-          upiId: upiId,
-          status: "pending",
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(() => {
-          db.collection("users").doc(user.uid).update({
-            rupees: firebase.firestore.FieldValue.increment(-amount)
-          });
-          alert("Withdrawal request successful!");
-          document.getElementById('withdraw-amount').value = '';
-          document.getElementById('withdraw-upi').value = '';
-        });
-      } else {
-        alert("Aapke paas paryapt balance nahi hai!");
+        console.error(
+          "History error:",
+          error
+        );
+
+        document.getElementById(
+          "history-list"
+        ).innerHTML = `
+          <tr>
+            <td colspan="3"
+                style="text-align:center;color:#e74c3c;">
+              History load nahi ho saki.
+            </td>
+          </tr>
+        `;
+
       }
-    });
+
+    );
+}
+
+
+/* =========================
+   UPI VALIDATION
+========================= */
+
+function isValidUPI(upi){
+
+  /*
+    Basic UPI format.
+    Examples:
+    name@upi
+    abc123@oksbi
+    number@ybl
+  */
+
+  const pattern =
+    /^[a-zA-Z0-9._-]{2,}@[a-zA-Z0-9._-]{2,}$/;
+
+  return pattern.test(upi);
+
+}
+
+
+/* =========================
+   SAFE HTML OUTPUT
+========================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   WITHDRAWAL
+========================= */
+
+async function submitWithdrawal(){
+
+  if(withdrawalProcessing){
+    return;
   }
 
-  function logoutUser() {
-    auth.signOut().then(() => {
-      window.location.href = "https://earnovaoffical.com/";
-    });
+  const user = auth.currentUser;
+
+  if(!user){
+
+    alert("Pehle Login karein!");
+    return;
+
   }
+
+  const amountInput =
+    document.getElementById(
+      "withdraw-amount"
+    );
+
+  const upiInput =
+    document.getElementById(
+      "withdraw-upi"
+    );
+
+  const button =
+    document.getElementById(
+      "withdraw-button"
+    );
+
+  const amount =
+    Number(amountInput.value);
+
+  const upiId =
+    upiInput.value.trim();
+
+  /* AMOUNT CHECK */
+
+  if(
+    !Number.isFinite(amount) ||
+    amount < MIN_WITHDRAWAL
+  ){
+
+    alert(
+      "Minimum withdrawal ₹20 hai."
+    );
+
+    return;
+  }
+
+  if(amount > 100000){
+
+    alert(
+      "Withdrawal amount invalid hai."
+    );
+
+    return;
+  }
+
+  /* UPI CHECK */
+
+  if(!upiId){
+
+    alert(
+      "Kripya UPI ID daalein."
+    );
+
+    return;
+  }
+
+  if(!isValidUPI(upiId)){
+
+    alert(
+      "Kripya valid UPI ID daalein."
+    );
+
+    return;
+  }
+
+
+  /* PREVENT DOUBLE CLICK */
+
+  withdrawalProcessing = true;
+
+  button.disabled = true;
+  button.innerText = "Processing...";
+
+
+  try{
+
+    /*
+      Transaction:
+      User balance check
+      +
+      Withdrawal creation
+      +
+      Balance deduction
+
+      All are handled together.
+    */
+
+    await db.runTransaction(
+      async (transaction) => {
+
+        const userRef =
+          db.collection("users")
+            .doc(user.uid);
+
+        const withdrawalRef =
+          db.collection("withdrawals")
+            .doc();
+
+        const userDoc =
+          await transaction.get(userRef);
+
+        if(!userDoc.exists){
+
+          throw new Error(
+            "USER_NOT_FOUND"
+          );
+        }
+
+        const userData =
+          userDoc.data();
+
+        const currentBalance =
+          Number(userData.rupees || 0);
+
+        if(
+          !Number.isFinite(currentBalance) ||
+          currentBalance < amount
+        ){
+
+          throw new Error(
+            "INSUFFICIENT_BALANCE"
+          );
+        }
+
+
+        /* CREATE WITHDRAWAL */
+
+        transaction.set(
+          withdrawalRef,
+          {
+            userId: user.uid,
+            amount: amount,
+            upiId: upiId,
+            status: "pending",
+            createdAt:
+              firebase.firestore
+                .FieldValue
+                .serverTimestamp()
+          }
+        );
+
+
+        /* DEDUCT BALANCE */
+
+        transaction.update(
+          userRef,
+          {
+            rupees:
+              firebase.firestore
+                .FieldValue
+                .increment(-amount)
+          }
+        );
+
+      }
+    );
+
+
+    /* SUCCESS */
+
+    alert(
+      "Withdrawal request successful! ₹" +
+      amount.toFixed(2) +
+      " request pending hai."
+    );
+
+    amountInput.value = "";
+    upiInput.value = "";
+
+
+  }catch(error){
+
+    console.error(
+      "Withdrawal error:",
+      error
+    );
+
+
+    if(
+      error.message ===
+      "INSUFFICIENT_BALANCE"
+    ){
+
+      alert(
+        "Aapke paas sufficient balance nahi hai."
+      );
+
+    }else if(
+      error.message ===
+      "USER_NOT_FOUND"
+    ){
+
+      alert(
+        "User account data nahi mila."
+      );
+
+    }else{
+
+      alert(
+        "Withdrawal request fail ho gayi. Please dobara try karein."
+      );
+
+    }
+
+  }finally{
+
+    withdrawalProcessing = false;
+
+    button.disabled = false;
+    button.innerText = "Withdraw Now";
+
+  }
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutUser(){
+
+  auth.signOut()
+    .then(() => {
+
+      window.location.href =
+        "https://earnovaoffical.com/";
+
+    })
+    .catch((error) => {
+
+      console.error(
+        "Logout error:",
+        error
+      );
+
+      alert(
+        "Logout nahi ho paya."
+      );
+
+    });
+
+}
+
 </script>
 
 </body>
